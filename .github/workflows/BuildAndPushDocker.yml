@@ -16,10 +16,10 @@ jobs:
       with:
         args: /github/workspace
       # /nofetch /exec /bin/sh /execargs "-c \"echo $GitVersion_FullSemVer > /github/workspace/version.txt\""
-    - name: chech GV
-      run: gitversion
-    - name: print version
-      run: cat ./version.txt
+    - name: debug
+      run: ls
+#    - name: print version
+#      run: cat ./version.txt
     - name: Build and push Docker images
       uses: docker/build-push-action@v1
       with:
