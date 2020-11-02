@@ -9,12 +9,16 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+
     - name: Get Git Version
-      uses: docker://gittools/gitversion:5.5.1-beta1-6-linux-centos.7-x64-netcoreapp3.1
+      uses: docker://gittools/gitversion:5.5.1-linux-alpine.3.10-x64-netcoreapp3.1
       with:
-        args: /github/workspace /nofetch /exec /bin/sh /execargs "-c \"echo $GitVersion_FullSemVer > /github/workspace/version.txt\""
+        args: /github/workspace
+      # /nofetch /exec /bin/sh /execargs "-c \"echo $GitVersion_FullSemVer > /github/workspace/version.txt\""
+    - name: chech GV
+      run: gitversion
     - name: print version
-      run: echo $GitVersion_FullSemVer
+      run: cat ./version.txt
     - name: Build and push Docker images
       uses: docker/build-push-action@v1
       with:
