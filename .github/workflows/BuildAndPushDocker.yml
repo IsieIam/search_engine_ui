@@ -16,4 +16,4 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: isieiam/se_ui
-        tags: 2.0
+        tags: "2.0"
