@@ -10,4 +10,5 @@ RUN apk --no-cache --update add build-base && \
 WORKDIR /app/ui
 ENV FLASK_APP=ui.py
 
+
 ENTRYPOINT ["gunicorn", "ui:app", "-b", "0.0.0.0"]
