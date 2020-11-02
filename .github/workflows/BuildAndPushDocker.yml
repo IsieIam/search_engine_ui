@@ -11,10 +11,13 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
+    - name: simple docker
+      run: docker run --rm -v "$(pwd):/repo" gittools/gitversion:5.5.1-linux-alpine.3.10-x64-netcoreapp3.1 /repo > ./version.txt
     - name: Get Git Version
       uses: docker://gittools/gitversion:5.5.1-linux-alpine.3.10-x64-netcoreapp3.1
       with:
-        args: '/github/workspace -nofetch exec /bin/sh -c \"echo $GitVersion_FullSemVer > /github/workspace/version.txt\"'
+        args: /github/workspace
+# /nofetch /exec /bin/sh -c \"echo $GitVersion_FullSemVer > /github/workspace/version.txt\"
     - name: debug
       run: ls
 #    - name: print version
