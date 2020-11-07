@@ -40,7 +40,7 @@ pipeline {
   post {
     success {
       echo 'Deploy'
-      def job = build job: 'deploy', wait: false
+      build job: 'deploy', wait: false
     }
   }
 }
