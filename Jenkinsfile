@@ -21,7 +21,7 @@ pipeline {
         }
       }
     }
-    stage('Deploy Image') {
+    stage('Push Image') {
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {
@@ -37,5 +37,10 @@ pipeline {
       }
     }
   }
-
+  post {
+    success {
+      echo 'Deploy'
+      def job = build job: 'deploy', wait: false
+    }
+  }
 }
